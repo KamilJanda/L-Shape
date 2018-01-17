@@ -1,10 +1,8 @@
 from __future__ import division
 
 from fractions import Fraction as Frac
-from mpl_toolkits.mplot3d import Axes3D
 import numpy
 import numpy.linalg
-import math
 import matplotlib.pyplot as plt
 
 N = 8 + 1
@@ -58,12 +56,11 @@ def mes():
     B = numpy.delete(B, 0, 1)
     L = numpy.delete(L, 0, 0)
 
-    # print(B)
+    #print(B)
 
-    # print(L)
+    #print(L)
 
     a = numpy.linalg.solve(B, L)
-    # print(result)
 
     # Calculating values for plotting
     n = 100
@@ -113,10 +110,13 @@ def g_func(x, y):
     return ((x + y) ** 2 / 2) ** Frac(1, 3)
 
 
-# refatocr
 def derivative_fi(xi, der_by_x):
     # der_by_x - true if derivative by x
-    if (xi == 3) or (xi == 2 and der_by_x) or (xi == 4) and (not der_by_x):
+    if xi == 3:
+        return 0.5
+    elif xi == 2 and der_by_x:
+        return 0.5
+    elif xi == 4 and not der_by_x:
         return 0.5
     else:
         return -0.5
