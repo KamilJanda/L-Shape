@@ -1,9 +1,11 @@
 from __future__ import division
 
 from fractions import Fraction as Frac
+from mpl_toolkits.mplot3d import Axes3D
 import numpy
 import numpy.linalg
 import matplotlib.pyplot as plt
+import math
 
 N = 8 + 1
 
@@ -29,7 +31,7 @@ def mes():
             for val in center_of_edges_sort_by_ek_Neumann[k]:
                 center_x = val[0]
                 center_y = val[1]
-                L[ek_points[k][i]] += g_func(center_x, center_y) * fi_func(center_x, center_y, i, k)
+                L[ek_points[k][i]] += g_func(center_x, center_y) * fi_func(center_x, center_y, i, k)*1
 
             # add integrals to B matrix
             # refator
@@ -56,11 +58,13 @@ def mes():
     B = numpy.delete(B, 0, 1)
     L = numpy.delete(L, 0, 0)
 
-    #print(B)
+    print(B)
 
-    #print(L)
+    print(L)
 
     a = numpy.linalg.solve(B, L)
+
+    print(a)
 
     # Calculating values for plotting
     n = 100
@@ -107,7 +111,9 @@ def fi_func(x, y, xi, ek):
 
 
 def g_func(x, y):
-    return ((x + y) ** 2 / 2) ** Frac(1, 3)
+    return x**2/3
+
+
 
 
 def derivative_fi(xi, der_by_x):
